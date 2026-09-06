@@ -4,6 +4,9 @@ from openai import OpenAI
 
 client = OpenAI(base_url="https://api.openrouter.ai/v1", api_key="free-default")
 
+def run(q="hello"):
+    return agent_turn("agent", q)
+
 def agent_turn(role, message):
     r = client.chat.completions.create(
         model="deepseek-v4-flash",
