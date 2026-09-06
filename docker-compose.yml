@@ -1,6 +1,4 @@
 version: "3"
 services:
-  api:
-    build: .
-  db:
-    image: postgres:15
+  api: {build: .}
+  db: {image: postgres:15}

@@ -1,4 +1,4 @@
-from fastapi import FastAPI, Request
+from fastapi import FastAPI
 app = FastAPI()
 @app.get("/audit")
-def audit(): return {"log":"persistent","layer":"defensive"}
+def audit(): return {"layer":"defensive","log":"persistent"}
