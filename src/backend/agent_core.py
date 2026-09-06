@@ -8,9 +8,12 @@ def run(q="hello"):
     return agent_turn("agent", q)
 
 def agent_turn(role, message):
-    r = client.chat.completions.create(
+    try:
+        r = client.chat.completions.create(
         model="deepseek-v4-flash",
         messages=[{"role":"system","content":"Agent OS specialist profile: "+role}, {"role":"user","content":message}],
         stream=False
     )
+    except Exception as e:
+        return {"agent": role, "reply": f"[offline-mode] {message}", "error": str(e)}
     return {"agent": role, "reply": r.choices[0].message.content, "usage": r.usage.total_tokens if r.usage else None}
